@@ -70,7 +70,11 @@ def sendText(repo,path,text):
 	wb.open(url)
 	
 def open_wc(sender): # Opens working copy
-	wb.open('working-copy://')
+	repo, path = info()
+	url = 'working-copy://open?'
+	f = {'repo':repo}
+	url += urllib.urlencode(f).replace('+','%20')
+	wb.open(url)
 
 @ui.in_background
 def copyFromWCPt1(sender):
